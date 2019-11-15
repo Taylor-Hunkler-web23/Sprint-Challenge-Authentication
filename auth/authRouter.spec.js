@@ -45,7 +45,7 @@ describe('POST login', function () {
                 .send({ username: "Jeep", password: "wrangler" })
                 .then(res => {
 
-                    expect(res.type).toMatch(/json/i); 
+                    expect(res.type).toMatch(/json/i);
                 })
         })
     })
@@ -53,39 +53,16 @@ describe('POST login', function () {
 
 
 
-
-// describe('POST login()', function () {
-//     beforeEach(async () => {
-//         await db('users').truncate();
-
-//     })
-//     it('should respond with status 200', async function () {
-
-//         return request(server)
-//         .post('/api/auth/register')
-//         .send({ username: "Jeep", password: "wrangler" })
-
-//         await request(server)
-//             .post("/api/auth/login")
-//             .send({ username: "Jeep", password: "wrangler" })
-//             .then(res => {
-//                 expect(res.status).toBe(200)
-//             })
-
-//     });
-// })
-
-
 describe('POST login', function () {
     describe('post /', function () {
-        it('should return json formated response', function () {
+        it('should return message of Invalid credentials', function () {
 
             return request(server)
                 .post('/api/auth/login')
-                .send({ username: "Jeep", password: "wranler" })
+                .send({ username: "Jeep", password: "wragler" })
                 .then(res => {
 
-                    expect(res.body).toEqual({message:'Invalid Credentials'});
+                    expect(res.body).toEqual({ message: 'Invalid Credentials' });
                 })
         })
     })
