@@ -16,8 +16,7 @@ router.post('/register', (req, res) => {
 
   Users.add(user)
     .then(saved => {
-      const token = getJwtToken(user.username); 
-      res.status(201).json({...saved, token});
+      res.status(201).json(saved);
     })
     .catch(error => {
       res.status(500).json(error);
