@@ -5,10 +5,13 @@ const jwt = require('jsonwebtoken');
 const Users = require('./auth-model.js');
 
 
+
 router.post('/register', (req, res) => {
   let user = req.body;
 
- 
+ if(!user.username || !user.password){
+   res.status(400).json({message:"Must provide username and password"})
+ }
 
   const hash = bcrypt.hashSync(user.password, 10); 
   user.password = hash;
@@ -19,6 +22,8 @@ router.post('/register', (req, res) => {
       res.status(201).json(saved);
     })
     .catch(error => {
+      
+       
       res.status(500).json(error);
     });
   
@@ -44,7 +49,7 @@ router.post('/login', (req, res) => {
       }
     })
     .catch(error => {
-      res.status(500).json(error);
+      res.status(500).json({message: "Could not add user"});
     });
 });
 
