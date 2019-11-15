@@ -4,15 +4,15 @@ module.exports = {
   add,
   find,
   findBy,
-
+  findById,
 };
 
 function find() {
-  return db('users').select('id', 'username');
+  return db('users').select('id', 'username', 'department');
 }
 
 function findBy(filter) {
-
+  //make sure to include role information
   return db('users').where(filter);
 }
 
@@ -22,3 +22,8 @@ async function add(user) {
   return findById(id);
 }
 
+function findById(id) {
+  return db('users')
+    .where({ id })
+    .first();
+}
